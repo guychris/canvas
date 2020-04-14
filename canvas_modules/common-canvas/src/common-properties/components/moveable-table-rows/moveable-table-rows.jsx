@@ -18,7 +18,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "carbon-components-react";
 import PropertyUtils from "./../../util/property-utils";
-import { ArrowUp24, ArrowDown24, BackToTop24, DownToBottom24 } from "@carbon/icons-react";
+import ArrowUp24 from "@carbon/icons-react/es/arrow--up/24";
+import ArrowDown24 from "@carbon/icons-react/es/arrow--down/24";
+import BackToTop24 from "@carbon/icons-react/es/back-to-top/24";
+import DownToBottom24 from "@carbon/icons-react/es/down-to-bottom/24";
 import classNames from "classnames";
 
 import { MESSAGE_KEYS } from "./../../constants/constants";

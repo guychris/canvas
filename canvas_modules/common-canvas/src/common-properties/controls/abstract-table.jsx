@@ -24,7 +24,7 @@ import SubPanelCell from "./../panels/sub-panel/cell.jsx";
 import ReadonlyControl from "./readonly";
 import PropertyUtils from "./../util/property-utils";
 import Icon from "./../../icons/icon.jsx";
-import { SubtractAlt24 } from "@carbon/icons-react";
+import SubtractAlt24 from "@carbon/icons-react/es/subtract--alt/24";
 import { ControlType, EditStyle } from "./../constants/form-constants";
 
 import Tooltip from "./../../tooltip/tooltip.jsx";

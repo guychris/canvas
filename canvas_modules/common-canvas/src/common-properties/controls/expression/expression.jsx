@@ -28,7 +28,7 @@ import WideFlyout from "./../../components/wide-flyout";
 import PropertyUtils from "./../../util/property-utils";
 import ExpressionBuilder from "./expression-builder/expression-builder.jsx";
 import { MESSAGE_KEYS, CONDITION_MESSAGE_TYPE, DEFAULT_VALIDATION_MESSAGE } from "./../../constants/constants";
-import { Calculator24 } from "@carbon/icons-react";
+import Calculator24 from "@carbon/icons-react/es/calculator/24";
 import ControlUtils from "./../../util/control-utils";
 import { STATES } from "./../../constants/constants.js";
 

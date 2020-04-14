@@ -26,7 +26,8 @@ import { Button } from "carbon-components-react";
 
 import { MESSAGE_KEYS, DATA_TYPE, TOOL_TIP_DELAY, SORT_DIRECTION, ROW_SELECTION } from "./../../constants/constants";
 import Icon from "./../../../icons/icon.jsx";
-import { ArrowLeft24, Reset24 } from "@carbon/icons-react";
+import ArrowLeft24 from "@carbon/icons-react/es/arrow--left/24";
+import Reset24 from "@carbon/icons-react/es/reset/24";
 
 import isEmpty from "lodash/isEmpty";
 import sortBy from "lodash/sortBy";

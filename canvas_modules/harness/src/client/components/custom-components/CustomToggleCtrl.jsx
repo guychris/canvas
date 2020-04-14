@@ -16,7 +16,8 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { WarningFilled16, ErrorFilled16 } from "@carbon/icons-react";
+import WarningFilled16 from "@carbon/icons-react/es/warning--filled/16";
+import ErrorFilled16 from "@carbon/icons-react/es/error--filled/16";
 import { Toggle, ToggleSmall } from "carbon-components-react";
 import { connect } from "react-redux";
 
