@@ -13,27 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* eslint arrow-body-style: ["off"] */
 
-export default (state = [], action) => {
-	switch (action.type) {
+/* Override styles for streams.json canvas */
 
-	case "ADD_NODE_TYPES_TO_PALETTE":
-		if (action.data.nodeTypes) {
-			return [
-				...state,
-				...action.data.nodeTypes
-			];
-		}
-		return state;
-
-	case "REMOVE_NODE_TYPES_FROM_PALETTE": {
-		return state.filter((nodeType) => {
-			return action.data.selObjectIds.findIndex((objId) => objId === nodeType.id) === -1;
-		});
+.streams {
+	.streams-link-decoration {
+		fill: #FFFFFF;
+		stroke: #243C48;
 	}
 
-	default:
-		return state;
-	}
-};
+}

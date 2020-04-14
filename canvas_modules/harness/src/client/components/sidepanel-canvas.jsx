@@ -56,12 +56,13 @@ import {
 	DIRECTION_BOTTOM_TOP,
 	ASSOC_RIGHT_SIDE_CURVE,
 	ASSOC_STRAIGHT,
-	NO_LAYOUT,
-	MODELER_FLOWS_LAYOUT,
-	BLUE_ELLIPSES_LAYOUT,
-	DB2_EXPLAIN_LAYOUT,
-	STREAMS_LAYOUT,
-	AUTO_AI_LAYOUT,
+	EXAMPLE_APP_NONE,
+	EXAMPLE_APP_FLOWS,
+	EXAMPLE_APP_BLUE_ELLIPSES,
+	EXAMPLE_APP_EXPLAIN,
+	EXAMPLE_APP_EXPLAIN2,
+	EXAMPLE_APP_STREAMS,
+	EXAMPLE_APP_TABLES,
 	FLYOUT,
 	MODAL,
 	TIP_PALETTE,
@@ -80,7 +81,8 @@ export default class SidePanelForms extends React.Component {
 			canvasPalette: "",
 			canvasPalette2: "",
 			canvasFiles: [],
-			paletteFiles: []
+			paletteFiles: [],
+			controlsDisabled: this.props.canvasConfig.selectedNodeLayout !== EXAMPLE_APP_NONE
 		};
 
 		this.onCanvasFileSelect = this.onCanvasFileSelect.bind(this);
@@ -376,6 +378,11 @@ export default class SidePanelForms extends React.Component {
 	}
 
 	nodeLayoutOptionChange(value) {
+		if (value !== EXAMPLE_APP_NONE) {
+			this.setState({ controlsDisabled: true });
+		} else {
+			this.setState({ controlsDisabled: false });
+		}
 		this.props.canvasConfig.setNodeLayout(value);
 	}
 
@@ -492,6 +499,7 @@ export default class SidePanelForms extends React.Component {
 				label="Canvas"
 				aria-label="Canvas"
 				onChange={this.onCanvasDropdownSelect.bind(this)}
+				disabled={this.state.disabledControls}
 			>
 				{this.dropdownOptions(this.state.canvasFiles, "Canvas")}
 			</Select>
@@ -914,8 +922,8 @@ export default class SidePanelForms extends React.Component {
 			</RadioButtonGroup>
 		</div>);
 
-		const nodeLayoutType = (<div className="harness-sidepanel-children">
-			<div className="harness-sidepanel-headers">Pre-packaged canvas types</div>
+		const exampleApps = (<div className="harness-sidepanel-children">
+			<div className="harness-sidepanel-headers">Example canvas apps</div>
 			<RadioButtonGroup
 				className="harness-sidepanel-radio-group"
 				name="node_layout_radio"
@@ -923,28 +931,32 @@ export default class SidePanelForms extends React.Component {
 				defaultSelected={this.props.canvasConfig.selectedNodeLayout}
 			>
 				<RadioButton
-					value={MODELER_FLOWS_LAYOUT}
-					labelText={MODELER_FLOWS_LAYOUT}
+					value={EXAMPLE_APP_FLOWS}
+					labelText={EXAMPLE_APP_FLOWS}
 				/>
 				<RadioButton
-					value={DB2_EXPLAIN_LAYOUT}
-					labelText={DB2_EXPLAIN_LAYOUT}
+					value={EXAMPLE_APP_EXPLAIN}
+					labelText={EXAMPLE_APP_EXPLAIN}
 				/>
 				<RadioButton
-					value={STREAMS_LAYOUT}
-					labelText={STREAMS_LAYOUT}
+					value={EXAMPLE_APP_EXPLAIN2}
+					labelText={EXAMPLE_APP_EXPLAIN2}
 				/>
 				<RadioButton
-					value={AUTO_AI_LAYOUT}
-					labelText={AUTO_AI_LAYOUT}
+					value={EXAMPLE_APP_STREAMS}
+					labelText={EXAMPLE_APP_STREAMS}
 				/>
 				<RadioButton
-					value={BLUE_ELLIPSES_LAYOUT}
-					labelText={BLUE_ELLIPSES_LAYOUT}
+					value={EXAMPLE_APP_TABLES}
+					labelText={EXAMPLE_APP_TABLES}
 				/>
 				<RadioButton
-					value={NO_LAYOUT}
-					labelText={NO_LAYOUT}
+					value={EXAMPLE_APP_BLUE_ELLIPSES}
+					labelText={EXAMPLE_APP_BLUE_ELLIPSES}
+				/>
+				<RadioButton
+					value={EXAMPLE_APP_NONE}
+					labelText={EXAMPLE_APP_NONE}
 				/>
 			</RadioButtonGroup>
 		</div>);
@@ -1071,63 +1083,67 @@ export default class SidePanelForms extends React.Component {
 				/>
 			</div>);
 
+		const disabledStyle = this.state.controlsDisabled ? { pointerEvents: "none", opacity: "0.4" } : {};
+
 		return (
 			<div>
-				{nodeLayoutType}
+				{exampleApps}
 				{divider}
-				{canvasInput}
-				{divider}
-				{paletteInput}
-				{divider}
-				{connectionType}
-				{divider}
-				{nodeFormatType}
-				{divider}
-				{linkType}
-				{divider}
-				{linkDirection}
-				{divider}
-				{interactionType}
-				{divider}
-				{snapToGrid}
-				{divider}
-				{enableZoomIntoSubFlows}
-				{divider}
-				{saveZoom}
-				{divider}
-				{paletteLayout}
-				{divider}
-				{enableDragWithoutSelect}
-				{divider}
-				{enableInsertNodeDroppedOnLink}
-				{divider}
-				{enableAssocLinkCreation}
-				{divider}
-				{assocLinkType}
-				{divider}
-				{enableObjectModel}
-				{divider}
-				{enableSaveToPalette}
-				{divider}
-				{enableDropZoneOnExternalDrag}
-				{divider}
-				{enableCreateSupernodeNonContiguous}
-				{divider}
-				{enableMoveNodesOnSupernodeResize}
-				{divider}
-				{displayBoudingRectangles}
-				{divider}
-				{schemaValidation}
-				{divider}
-				{displayFullLabelOnHover}
-				{divider}
-				{tipConfig}
-				{divider}
-				{nodeDraggable}
-				{divider}
-				{extraCanvas}
-				{canvasInput2}
-				{paletteInput2}
+				<div style={disabledStyle}>
+					{canvasInput}
+					{divider}
+					{paletteInput}
+					{divider}
+					{connectionType}
+					{divider}
+					{nodeFormatType}
+					{divider}
+					{linkType}
+					{divider}
+					{linkDirection}
+					{divider}
+					{interactionType}
+					{divider}
+					{snapToGrid}
+					{divider}
+					{enableZoomIntoSubFlows}
+					{divider}
+					{saveZoom}
+					{divider}
+					{paletteLayout}
+					{divider}
+					{enableDragWithoutSelect}
+					{divider}
+					{enableInsertNodeDroppedOnLink}
+					{divider}
+					{enableAssocLinkCreation}
+					{divider}
+					{assocLinkType}
+					{divider}
+					{enableObjectModel}
+					{divider}
+					{enableSaveToPalette}
+					{divider}
+					{enableDropZoneOnExternalDrag}
+					{divider}
+					{enableCreateSupernodeNonContiguous}
+					{divider}
+					{enableMoveNodesOnSupernodeResize}
+					{divider}
+					{displayBoudingRectangles}
+					{divider}
+					{schemaValidation}
+					{divider}
+					{displayFullLabelOnHover}
+					{divider}
+					{tipConfig}
+					{divider}
+					{nodeDraggable}
+					{divider}
+					{extraCanvas}
+					{canvasInput2}
+					{paletteInput2}
+				</div>
 			</div>
 		);
 	}
